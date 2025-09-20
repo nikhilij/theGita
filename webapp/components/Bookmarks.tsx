@@ -2,23 +2,25 @@
 
 import React from 'react';
 import { useApp } from './AppContext';
+import { useLanguage } from './LanguageContext';
 
 const Bookmarks: React.FC = () => {
   const { bookmarks, chapters, setCurrentVerse, removeBookmark } = useApp();
+  const { t } = useLanguage();
 
   if (bookmarks.length === 0) {
     return (
       <div className="text-center py-12">
         <div className="text-6xl mb-4">📖</div>
-        <h3 className="text-xl font-semibold text-[#14213d] mb-2">No Bookmarks Yet</h3>
-        <p className="text-[#fca311]">Bookmark verses as you read to see them here</p>
+        <h3 className="text-xl font-semibold text-[#14213d] mb-2">{t('bookmarks.empty.title')}</h3>
+        <p className="text-[#fca311]">{t('bookmarks.empty.description')}</p>
       </div>
     );
   }
 
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-bold text-[#14213d] mb-6">Your Bookmarks</h2>
+      <h2 className="text-2xl font-bold text-[#14213d] mb-6">{t('bookmarks.title')}</h2>
       <div className="space-y-3">
         {bookmarks.map((bookmark, index) => {
           const chapter = chapters.find(c => c.id === bookmark.chapterId);
@@ -45,7 +47,7 @@ const Bookmarks: React.FC = () => {
                     {chapter?.description}
                   </p>
                   <p className="text-xs text-[#14213d] mt-2">
-                    Bookmarked on {bookmark.timestamp.toLocaleDateString()}
+                    {t('bookmarks.bookmarkedOn')} {bookmark.timestamp.toLocaleDateString()}
                   </p>
                 </div>
                 <div className="flex space-x-2 ml-4">
@@ -53,7 +55,7 @@ const Bookmarks: React.FC = () => {
                     onClick={() => setCurrentVerse(bookmark.chapterId, bookmark.verseId)}
                     className="px-3 py-1 bg-[#fca311] hover:bg-[#e5a00f] text-[#14213d] text-sm rounded transition-colors duration-200"
                   >
-                    Go to Verse
+                    {t('bookmarks.goToVerse')}
                   </button>
                   <button
                     onClick={() => removeBookmark(bookmark.chapterId, bookmark.verseId)}

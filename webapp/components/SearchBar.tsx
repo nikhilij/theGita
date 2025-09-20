@@ -2,9 +2,11 @@
 
 import React, { useState } from 'react';
 import { useApp } from './AppContext';
+import { useLanguage } from './LanguageContext';
 
 const SearchBar: React.FC = () => {
   const { chapters, setCurrentChapter } = useApp();
+  const { t } = useLanguage();
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<typeof chapters>([]);
 
@@ -26,7 +28,7 @@ const SearchBar: React.FC = () => {
         <input
           value={query}
           onChange={(e) => handleSearch(e.target.value)}
-          placeholder="Search chapters or Sanskrit titles..."
+          placeholder={t('search.placeholder')}
           className="flex-1 px-4 py-2 rounded-lg border border-[#fca311] bg-[#ffffff] text-[#14213d]"
         />
         <button
@@ -35,7 +37,7 @@ const SearchBar: React.FC = () => {
           }}
           className="px-4 py-2 bg-[#fca311] hover:bg-[#e5a00f] text-[#14213d] rounded-lg"
         >
-          Search
+          {t('search.button')}
         </button>
       </div>
 

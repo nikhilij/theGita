@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ScrollToTopButton from "../components/ScrollToTopButton";
+import { LanguageProvider } from "../components/LanguageContext";
 
 
 export const metadata: Metadata = {
@@ -34,8 +35,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
-        <ScrollToTopButton />
+        <LanguageProvider>
+          {children}
+          <ScrollToTopButton />
+        </LanguageProvider>
       </body>
     </html>
   );

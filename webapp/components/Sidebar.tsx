@@ -2,9 +2,11 @@
 
 import React, { useState } from 'react';
 import { useApp } from './AppContext';
+import { useLanguage } from './LanguageContext';
 
 const Sidebar: React.FC = () => {
   const [expandedChapter, setExpandedChapter] = useState<number | null>(null);
+  const { t } = useLanguage();
   const {
     chapters,
     currentChapter,
@@ -38,8 +40,8 @@ const Sidebar: React.FC = () => {
   return (
     <div className="w-80 bg-[#ffffff] shadow-lg h-screen overflow-y-auto">
       <div className="p-4 border-b border-[#fca311]">
-        <h2 className="text-xl font-bold text-[#14213d]">Chapters</h2>
-        <p className="text-sm text-[#fca311]">Bhagavad Gita</p>
+        <h2 className="text-xl font-bold text-[#14213d]">{t('reader.chapters')}</h2>
+        <p className="text-sm text-[#fca311]">{t('reader.gita')}</p>
       </div>
 
       <div className="py-2">

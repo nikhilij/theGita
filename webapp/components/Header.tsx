@@ -5,6 +5,7 @@ import { useApp } from './AppContext';
 import SearchBar from './SearchBar';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import LanguageSelector from './LanguageSelector';
 
 const Header: React.FC = () => {
   const [isQuickJumpOpen, setIsQuickJumpOpen] = useState(false);
@@ -97,12 +98,10 @@ const Header: React.FC = () => {
           </div>
         )}
 
-        {/* Mobile Menu Button */}
-        <button className="md:hidden text-white focus:outline-none">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
+        {/* Language Selector */}
+        <div className="hidden md:block md:ml-4">
+          <LanguageSelector />
+        </div>
       </div>
 
       {/* Mobile Navigation */}

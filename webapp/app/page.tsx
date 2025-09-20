@@ -1,25 +1,28 @@
+"use client";
+
 import HeaderPublic from '../components/HeaderPublic';
 import Link from 'next/link';
+import { useLanguage } from '../components/LanguageContext';
 
 export default function Home() {
+  const { t } = useLanguage();
   return (
     <>
       <HeaderPublic />
       <main className="min-h-screen bg-[#e5e5e5]">
         <section className="container mx-auto px-4 py-20 flex flex-col lg:flex-row items-center gap-12">
           <div className="lg:w-1/2">
-            <h1 className="text-5xl font-bold text-[#14213d] mb-6 leading-tight">Discover the Divine Wisdom</h1>
-            <h2 className="text-4xl text-[#fca311] font-extrabold mb-6">Bhagavad Gita</h2>
+            <h1 className="text-5xl font-bold text-[#14213d] mb-6 leading-tight">{t('home.hero.title')}</h1>
+            <h2 className="text-4xl text-[#fca311] font-extrabold mb-6">{t('home.hero.subtitle')}</h2>
             <p className="text-lg text-[#14213d] mb-6 max-w-xl">
-              Read, listen, and explore the Bhagavad Gita chapter by chapter. Our interactive UI supports
-              multi-language translations, high-quality text-to-voice recitations, bookmarks, and progress tracking.
+              {t('home.hero.description')}
             </p>
 
             <div className="flex items-center gap-4">
               <Link href="/read" className="bg-[#fca311] hover:bg-[#e5a00f] text-[#14213d] px-6 py-3 rounded-lg font-semibold shadow-md">
-                🕉️ Start Reading
+                🕉️ {t('home.hero.startReading')}
               </Link>
-              <a href="#about" className="text-[#14213d] underline">Learn more</a>
+              <a href="#about" className="text-[#14213d] underline">{t('home.hero.learnMore')}</a>
             </div>
           </div>
 
@@ -37,9 +40,9 @@ export default function Home() {
         <section id="about" className="w-full py-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-[#14213d] mb-4">Discover the Divine Wisdom</h2>
+              <h2 className="text-4xl font-bold text-[#14213d] mb-4">{t('features.title')}</h2>
               <p className="text-lg text-[#fca311] max-w-2xl mx-auto">
-                Experience the Bhagavad Gita like never before with our comprehensive reading platform
+                {t('features.subtitle')}
               </p>
             </div>
 
@@ -49,9 +52,9 @@ export default function Home() {
                 <div className="w-16 h-16 bg-gradient-to-br from-[#fca311] to-[#e5a00f] rounded-full flex items-center justify-center mb-6 mx-auto">
                   <span className="text-2xl">📖</span>
                 </div>
-                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">Complete Text</h3>
+                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">{t('features.completeText.title')}</h3>
                 <p className="text-[#14213d] text-center leading-relaxed">
-                  Access all 18 chapters and 700 verses of the Bhagavad Gita with beautiful formatting and clear typography for an immersive reading experience.
+                  {t('features.completeText.description')}
                 </p>
               </div>
 
@@ -60,9 +63,9 @@ export default function Home() {
                 <div className="w-16 h-16 bg-gradient-to-br from-[#fca311] to-[#e5a00f] rounded-full flex items-center justify-center mb-6 mx-auto">
                   <span className="text-2xl">🔍</span>
                 </div>
-                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">Smart Search</h3>
+                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">{t('features.smartSearch.title')}</h3>
                 <p className="text-[#14213d] text-center leading-relaxed">
-                  Find specific verses, chapters, or concepts instantly with our powerful search functionality that works across both English and Sanskrit text.
+                  {t('features.smartSearch.description')}
                 </p>
               </div>
 
@@ -71,9 +74,9 @@ export default function Home() {
                 <div className="w-16 h-16 bg-gradient-to-br from-[#fca311] to-[#e5a00f] rounded-full flex items-center justify-center mb-6 mx-auto">
                   <span className="text-2xl">🔖</span>
                 </div>
-                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">Bookmarks</h3>
+                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">{t('features.bookmarks.title')}</h3>
                 <p className="text-[#14213d] text-center leading-relaxed">
-                  Save your favorite verses and create personalized collections. Never lose track of the passages that resonate with your soul.
+                  {t('features.bookmarks.description')}
                 </p>
               </div>
 
@@ -82,9 +85,9 @@ export default function Home() {
                 <div className="w-16 h-16 bg-gradient-to-br from-[#fca311] to-[#e5a00f] rounded-full flex items-center justify-center mb-6 mx-auto">
                   <span className="text-2xl">📊</span>
                 </div>
-                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">Progress Tracking</h3>
+                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">{t('features.progress.title')}</h3>
                 <p className="text-[#14213d] text-center leading-relaxed">
-                  Monitor your reading journey with detailed progress indicators. See how much of each chapter you&apos;ve completed and stay motivated.
+                  {t('features.progress.description')}
                 </p>
               </div>
 
@@ -93,9 +96,9 @@ export default function Home() {
                 <div className="w-16 h-16 bg-gradient-to-br from-[#fca311] to-[#e5a00f] rounded-full flex items-center justify-center mb-6 mx-auto">
                   <span className="text-2xl">🎧</span>
                 </div>
-                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">Audio Recitations</h3>
+                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">{t('features.audio.title')}</h3>
                 <p className="text-[#14213d] text-center leading-relaxed">
-                  Listen to divine recitations while you read. Experience the sacred verses through traditional chanting and modern audio quality.
+                  {t('features.audio.description')}
                 </p>
               </div>
 
@@ -104,9 +107,9 @@ export default function Home() {
                 <div className="w-16 h-16 bg-gradient-to-br from-[#fca311] to-[#e5a00f] rounded-full flex items-center justify-center mb-6 mx-auto">
                   <span className="text-2xl">🌐</span>
                 </div>
-                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">Multi-Language</h3>
+                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">{t('features.multilang.title')}</h3>
                 <p className="text-[#14213d] text-center leading-relaxed">
-                  Explore the Gita in multiple languages including Sanskrit, English, and other regional translations for deeper understanding.
+                  {t('features.multilang.description')}
                 </p>
               </div>
             </div>
@@ -114,12 +117,12 @@ export default function Home() {
             {/* Call to Action Section */}
             <div className="mt-16 text-center">
               <div className="bg-gradient-to-r from-[#14213d] to-[#002447] rounded-2xl p-12 text-white">
-                <h3 className="text-3xl font-bold mb-4">Begin Your Spiritual Journey</h3>
+                <h3 className="text-3xl font-bold mb-4">{t('cta.title')}</h3>
                 <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-                  Join thousands of seekers who have found wisdom, peace, and enlightenment through the teachings of the Bhagavad Gita.
+                  {t('cta.description')}
                 </p>
                 <Link href="/read" className="inline-block bg-[#fca311] hover:bg-[#e5a00f] text-[#14213d] px-8 py-4 rounded-lg font-semibold text-lg shadow-lg transition-all duration-300 transform hover:scale-105">
-                  🕉️ Start Your Journey
+                  🕉️ {t('cta.button')}
                 </Link>
               </div>
             </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import LanguageSelector from './LanguageSelector';
 
 const HeaderPublic: React.FC = () => {
   return (
@@ -30,9 +31,11 @@ const HeaderPublic: React.FC = () => {
           <a href="#contact" className="hover:text-orange-200 transition-colors duration-200 font-medium">
             Contact
           </a>
+          <LanguageSelector />
         </nav>
 
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center space-x-4">
+          <LanguageSelector />
           <Link href="/read" className="px-3 py-2 bg-white text-orange-600 rounded-md font-medium">Start</Link>
         </div>
       </div>
