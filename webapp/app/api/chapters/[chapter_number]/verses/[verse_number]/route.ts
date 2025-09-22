@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import dbConnect from '../../../../../lib/dbConnect';
-import { Chapter } from '../../../../../models/Gita';
+import dbConnect from '@/lib/dbConnect';
+import { Chapter } from '@/models/Gita';
 
-export async function GET(req: NextRequest, { params }: { params: { chapter_number: string, verse_number: string } }) {
-  const { chapter_number, verse_number } = params;
+export async function GET(req: NextRequest, { params }: { params: Promise<{ chapter_number: string, verse_number: string }> }) {
+  const { chapter_number, verse_number } = await params;
   await dbConnect();
 
   try {
@@ -11,7 +11,7 @@ export async function GET(req: NextRequest, { params }: { params: { chapter_numb
     if (!chapter) {
       return NextResponse.json({ success: false, error: 'Chapter not found' }, { status: 404 });
     }
-    const verse = chapter.verses.find(v => v.verse === parseInt(verse_number));
+    const verse = chapter.verses.find((v: { verse: number; }) => v.verse === parseInt(verse_number));
     if (!verse) {
         return NextResponse.json({ success: false, error: 'Verse not found' }, { status: 404 });
     }

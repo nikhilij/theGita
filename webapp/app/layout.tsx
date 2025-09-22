@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "../styles/fonts.css";
-import ScrollToTopButton from "../components/ScrollToTopButton";
-import { LanguageProvider } from "../components/LanguageContext";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
+import { LanguageProvider } from "@/components/LanguageContext";
 
 
 export const metadata: Metadata = {

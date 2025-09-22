@@ -1,11 +1,18 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_URI!;
 
 if (!MONGODB_URI) {
   throw new Error(
     'Please define the MONGODB_URI environment variable inside .env.local'
   );
+}
+
+declare global {
+  var mongoose: {
+    conn: any;
+    promise: Promise<any> | null;
+  };
 }
 
 let cached = global.mongoose;
@@ -25,7 +32,8 @@ async function dbConnect() {
     };
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      return mongoose;
+      cached.conn = mongoose.connection;
+      return cached;
     });
   }
   cached.conn = await cached.promise;

@@ -38,7 +38,7 @@ const VerseDisplay: React.FC<VerseDisplayProps> = ({ chapterId, verseId }) => {
     }
   };
 
-  const verseData = mockVerses[chapterId]?.[verseId];
+  const verseData = (mockVerses as any)[chapterId]?.[verseId];
 
   if (!chapter || !verseData) {
     return (

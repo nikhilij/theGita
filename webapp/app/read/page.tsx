@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import Header from "../../components/Header";
-import Sidebar from "../../components/Sidebar";
-import VerseDisplay from "../../components/VerseDisplay";
-import { AppProvider, useApp } from "../../components/AppContext";
-import { useTranslation } from "../../components/useTranslation";
+import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
+import VerseDisplay from "@/components/VerseDisplay";
+import { AppProvider, useApp } from "@/components/AppContext";
+import { useTranslation } from "@/components/useTranslation";
 
 function ReadContent() {
   const { currentChapter, currentVerse } = useApp();

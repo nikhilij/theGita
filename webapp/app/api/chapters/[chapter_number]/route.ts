@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import dbConnect from '../../../../lib/dbConnect';
-import { Chapter } from '../../../../models/Gita';
+import dbConnect from '@/lib/dbConnect';
+import { Chapter } from '@/models/Gita';
 
-export async function GET(req: NextRequest, { params }: { params: { chapter_number: string } }) {
-  const { chapter_number } = params;
+export async function GET(req: NextRequest, { params }: { params: Promise<{ chapter_number: string }> }) {
+  const { chapter_number } = await params;
   await dbConnect();
 
   try {

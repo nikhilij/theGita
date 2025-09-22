@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { translateWithHuggingFace, translateBatch } from '../lib/translationService';
+import { translateWithHuggingFace, translateBatch } from '@/lib/translationService';
 
 export type Language = 'en' | 'hi' | 'sa' | 'es' | 'ar' | 'fr' | 'de' | 'zh' | 'ja' | 'ru';
 

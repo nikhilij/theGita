@@ -1,8 +1,8 @@
 "use client";
 
-import HeaderPublic from '../components/HeaderPublic';
+import HeaderPublic from '@/components/HeaderPublic';
 import Link from 'next/link';
-import { useTranslation } from '../components/useTranslation';
+import { useTranslation } from '@/components/useTranslation';
 
 export default function Home() {
   const title = useTranslation('home.hero.title');
