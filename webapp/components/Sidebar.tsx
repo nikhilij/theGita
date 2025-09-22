@@ -3,10 +3,12 @@
 import React, { useState } from 'react';
 import { useApp } from './AppContext';
 import { useLanguage } from './LanguageContext';
+import { useTranslation } from './useTranslation';
 
 const Sidebar: React.FC = () => {
   const [expandedChapter, setExpandedChapter] = useState<number | null>(null);
-  const { t } = useLanguage();
+  const chaptersText = useTranslation('reader.chapters');
+  const gitaText = useTranslation('reader.gita');
   const {
     chapters,
     currentChapter,
@@ -40,8 +42,8 @@ const Sidebar: React.FC = () => {
   return (
     <div className="w-80 bg-[#ffffff] shadow-lg h-screen overflow-y-auto">
       <div className="p-4 border-b border-[#fca311]">
-        <h2 className="text-xl font-bold text-[#14213d]">{t('reader.chapters')}</h2>
-        <p className="text-sm text-[#fca311]">{t('reader.gita')}</p>
+        <h2 className="text-xl font-bold text-[#14213d]">{chaptersText}</h2>
+        <p className="text-sm text-[#fca311]">{gitaText}</p>
       </div>
 
       <div className="py-2">

@@ -1,0 +1,48 @@
+/* Accessible, beautiful font stack for Bhagavad Gita app */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Serif:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Serif+Devanagari:wght@400;700&family=Noto+Sans:wght@400;700&display=swap');
+
+:root {
+  --font-sans: 'Inter', 'Noto Sans', Arial, Helvetica, sans-serif;
+  --font-serif: 'Noto Serif', 'Georgia', 'Times New Roman', serif;
+  --font-devanagari: 'Noto Sans Devanagari', 'Noto Serif Devanagari', 'Mangal', 'Kohinoor Devanagari', serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: #e5e5e5;
+  color: #14213d;
+}
+
+.verse {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  line-height: 2;
+  color: #22223b;
+  background: #fffbe7;
+  border-left: 4px solid #fca311;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px 0 #fca31122;
+}
+
+.verse-sanskrit, .verse-hindi {
+  font-family: var(--font-devanagari);
+  font-size: 1.35rem;
+  letter-spacing: 0.01em;
+  color: #2d3142;
+}
+
+.verse-translation {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  color: #14213d;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .verse, .verse-sanskrit, .verse-hindi {
+    font-size: 1.05rem;
+    padding: 0.75rem 1rem;
+  }
+}

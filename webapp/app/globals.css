@@ -1,2 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif:wght@400;500;600;700&family=Noto+Sans:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
+/* Custom font variables for consistent typography */
+:root {
+  /* Primary fonts for sacred text content */
+  --font-primary: 'Noto Serif', 'Noto Serif Devanagari', serif;
+  --font-secondary: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Noto Sans', 'Noto Sans Devanagari', sans-serif;
+
+  /* Font sizes optimized for readability */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 1.875rem;  /* 30px */
+  --text-4xl: 2.25rem;   /* 36px */
+  --text-5xl: 3rem;      /* 48px */
+
+  /* Line heights for optimal reading */
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+
+  /* Letter spacing for different text sizes */
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+}
+
+/* Base typography styles */
+* {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "pnum" 1, "tnum" 0, "onum" 1, "lnum" 0, "dlig" 0;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings use Inter for modern, clean appearance */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+/* UI elements and buttons */
+button, input, select, textarea {
+  font-family: var(--font-secondary);
+  font-weight: 500;
+}
+
+/* Code and monospace text */
+code, pre, kbd {
+  font-family: var(--font-mono);
+  font-weight: 400;
+}
+
+/* Specific styles for sacred text content */
+.verse-text {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  line-height: var(--leading-loose);
+  font-weight: 400;
+  text-align: justify;
+  hyphens: auto;
+  word-spacing: 0.1em;
+}
+
+.verse-text:lang(hi),
+.verse-text:lang(sa) {
+  font-family: 'Noto Serif Devanagari', 'Noto Serif', serif;
+  font-size: var(--text-xl);
+  line-height: var(--leading-loose);
+}
+
+/* Chapter titles and headings */
+.chapter-title {
+  font-family: var(--font-primary);
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  margin-bottom: 1rem;
+}
+
+.chapter-title:lang(hi),
+.chapter-title:lang(sa) {
+  font-family: 'Noto Serif Devanagari', 'Noto Serif', serif;
+}
+
+/* Sanskrit text specific styling */
+.sanskrit-text {
+  font-family: 'Noto Serif Devanagari', 'Noto Serif', serif;
+  font-size: var(--text-xl);
+  line-height: var(--leading-loose);
+  font-weight: 500;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+/* Hindi text specific styling */
+.hindi-text {
+  font-family: 'Noto Serif Devanagari', 'Noto Serif', serif;
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  font-weight: 400;
+}
+
+/* Improve readability on different screen sizes */
+@media (max-width: 640px) {
+  .verse-text {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+  }
+
+  .verse-text:lang(hi),
+  .verse-text:lang(sa) {
+    font-size: var(--text-lg);
+  }
+
+  .chapter-title {
+    font-size: var(--text-2xl);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  body {
+    font-weight: 500;
+  }
+
+  .verse-text {
+    font-weight: 500;
+    letter-spacing: 0.025em;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid #fca311;
+  outline-offset: 2px;
+}
+
+/* Ensure proper text rendering for all scripts */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}

@@ -1,0 +1,13 @@
+**/.env
+**/node_modules
+/.next
+**/venv
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/.venv
+**/env/
+**/.env/
+**/ENV/
+**/env.bak/
+**/venv.bak/
