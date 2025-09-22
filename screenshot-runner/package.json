@@ -1,0 +1,12 @@
+{
+  "name": "screenshot-runner",
+  "version": "1.0.0",
+  "description": "Puppeteer-based screenshot runner for theGita",
+  "main": "capture.js",
+  "scripts": {
+    "capture": "node capture.js"
+  },
+  "dependencies": {
+    "puppeteer": "^20.7.2"
+  }
+}

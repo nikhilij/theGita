@@ -1,0 +1,1 @@
+cd /workspaces/theGita/webapp/translateapi && source venv/bin/activate && python translate_service.py

@@ -6,29 +6,93 @@ const BATCH_TRANSLATE_URL = process.env.NEXT_PUBLIC_TRANSLATE_URL?.replace('/tra
 // Cache for translations to avoid repeated API calls
 const translationCache = new Map<string, string>();
 
-// Generate cache key
-const getCacheKey = (text: string, sourceLang: string, targetLang: string): string => {
-  return `${text}|${sourceLang}|${targetLang}`;
+/**
+ * TODO: Translation Enhancement Plan
+ * 
+ * Current Issues:
+ * - Translations are hard to read and understand
+ * - Context is often lost in translation
+ * - UI sometimes doesn't display translations properly
+ * 
+ * Proposed Solutions:
+ * 1. Implement context-aware translations
+ * 2. Consider vector embeddings similar to RAG systems
+ * 3. Add domain-specific context hints
+ * 4. Improve UI rendering of translations
+ * 
+ * See /translateapi/TRANSLATION_TODO.md for complete details
+ */
+
+// Domain-specific context for better translations
+const translationContexts: Record<string, string> = {
+  'home.hero': 'Spiritual wisdom from the Bhagavad Gita, Hindu sacred text',
+  'features': 'Features of a Bhagavad Gita reading application',
+  'chapter': 'Chapter titles from the Bhagavad Gita',
+  'cta': 'Call to action for users to read the Bhagavad Gita',
+  'footer': 'Website footer information'
 };
 
-export const translateWithHuggingFace = async (text: string, targetLang: string, sourceLang = 'en'): Promise<string> => {
-  // Check cache first
-  const cacheKey = getCacheKey(text, sourceLang, targetLang);
+// Generate cache key
+const getCacheKey = (text: string, sourceLang: string, targetLang: string, context?: string): string => {
+  return `${text}|${sourceLang}|${targetLang}|${context || ''}`;
+};
+
+/**
+ * Enhanced translation function with context support
+ * @param text Text to translate
+ * @param targetLang Target language code
+ * @param sourceLang Source language code
+ * @param contextKey Optional context key for domain-specific translations
+ * @returns Translated text
+ */
+export const translateWithHuggingFace = async (
+  text: string, 
+  targetLang: string, 
+  sourceLang = 'en', 
+  contextKey?: string
+): Promise<string> => {
+  // Extract context from contextKey if provided
+  const context = contextKey ? 
+    Object.entries(translationContexts).find(([key]) => contextKey.startsWith(key))?.[1] : 
+    undefined;
+  
+  // Check cache first with context
+  const cacheKey = getCacheKey(text, sourceLang, targetLang, context);
   if (translationCache.has(cacheKey)) {
     console.log('Cache hit for:', text.substring(0, 30) + '...');
     return translationCache.get(cacheKey)!;
   }
 
   try {
-    console.log('Translating:', { text: text.substring(0, 50) + '...', sourceLang, targetLang });
+    console.log('Translating:', { 
+      text: text.substring(0, 50) + '...', 
+      sourceLang, 
+      targetLang,
+      context: context || 'none'
+    });
     
-    const response = await axios.post(TRANSLATE_URL, {
+    // Add context to improve translation quality if available
+    const payload: any = {
       text,
       source: sourceLang,
       target: targetLang
-    });
+    };
     
-    const translated = response.data.translated;
+    if (context) {
+      payload.context = context;
+    }
+    
+    const response = await axios.post(TRANSLATE_URL, payload);
+    let translated = response.data.translated;
+    
+    // Post-processing for better readability
+    // Remove excessive punctuation that sometimes appears in translations
+    translated = translated.replace(/([,.!?])\1+/g, '$1');
+    
+    // Fix capitalization
+    if (translated.length > 0) {
+      translated = translated.charAt(0).toUpperCase() + translated.slice(1);
+    }
     
     // Cache the result
     translationCache.set(cacheKey, translated);
@@ -40,14 +104,33 @@ export const translateWithHuggingFace = async (text: string, targetLang: string,
   }
 };
 
-export const translateBatch = async (texts: string[], targetLang: string, sourceLang = 'en'): Promise<string[]> => {
+/**
+ * Enhanced batch translation function with context support
+ * @param texts Array of texts to translate
+ * @param targetLang Target language code
+ * @param sourceLang Source language code
+ * @param contextKeys Optional array of context keys for domain-specific translations
+ * @returns Array of translated texts
+ */
+export const translateBatch = async (
+  texts: string[], 
+  targetLang: string, 
+  sourceLang = 'en',
+  contextKeys?: string[]
+): Promise<string[]> => {
   // Check cache for all texts first
   const results: string[] = [];
   const uncachedTexts: string[] = [];
   const uncachedIndices: number[] = [];
+  const uncachedContexts: string[] = [];
 
   for (let i = 0; i < texts.length; i++) {
-    const cacheKey = getCacheKey(texts[i], sourceLang, targetLang);
+    const contextKey = contextKeys?.[i];
+    const context = contextKey ? 
+      Object.entries(translationContexts).find(([key]) => contextKey.startsWith(key))?.[1] : 
+      undefined;
+    
+    const cacheKey = getCacheKey(texts[i], sourceLang, targetLang, context);
     if (translationCache.has(cacheKey)) {
       results[i] = translationCache.get(cacheKey)!;
     } else {

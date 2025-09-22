@@ -50,7 +50,7 @@ const translations = {
     'home.hero.learnMore': 'Learn more',
 
     // Features
-    'features.title': 'Discover the Divine Wisdom',
+    'features.title': 'Explore Sacred Teachings',
     'features.subtitle': 'Experience the Bhagavad Gita like never before with our comprehensive reading platform',
     'features.completeText.title': 'Complete Text',
     'features.completeText.description': 'Access all 18 chapters and 700 verses of the Bhagavad Gita with beautiful formatting and clear typography for an immersive reading experience.',

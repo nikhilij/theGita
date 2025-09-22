@@ -5,150 +5,283 @@ import Link from 'next/link';
 import { useTranslation } from '@/components/useTranslation';
 
 export default function Home() {
+  // Hero Section Translations
   const title = useTranslation('home.hero.title');
   const subtitle = useTranslation('home.hero.subtitle');
   const description = useTranslation('home.hero.description');
   const startReading = useTranslation('home.hero.startReading');
   const learnMore = useTranslation('home.hero.learnMore');
+  
+  // Features Section Translations
   const featuresTitle = useTranslation('features.title');
   const featuresSubtitle = useTranslation('features.subtitle');
-  const completeTextTitle = useTranslation('features.completeText.title');
-  const completeTextDesc = useTranslation('features.completeText.description');
-  const smartSearchTitle = useTranslation('features.smartSearch.title');
-  const smartSearchDesc = useTranslation('features.smartSearch.description');
-  const bookmarksTitle = useTranslation('features.bookmarks.title');
-  const bookmarksDesc = useTranslation('features.bookmarks.description');
-  const progressTitle = useTranslation('features.progress.title');
-  const progressDesc = useTranslation('features.progress.description');
-  const audioTitle = useTranslation('features.audio.title');
-  const audioDesc = useTranslation('features.audio.description');
-  const multilangTitle = useTranslation('features.multilang.title');
-  const multilangDesc = useTranslation('features.multilang.description');
+  
+  // Feature Cards Data with color schemes for better visual hierarchy
+  const featureCards = [
+    {
+      icon: "📖",
+      iconBg: "from-amber-400 to-amber-500",
+      title: useTranslation('features.completeText.title'),
+      description: useTranslation('features.completeText.description')
+    },
+    {
+      icon: "🔍",
+      iconBg: "from-blue-400 to-blue-500",
+      title: useTranslation('features.smartSearch.title'),
+      description: useTranslation('features.smartSearch.description')
+    },
+    {
+      icon: "🔖",
+      iconBg: "from-green-400 to-green-500",
+      title: useTranslation('features.bookmarks.title'),
+      description: useTranslation('features.bookmarks.description')
+    },
+    {
+      icon: "📊",
+      iconBg: "from-purple-400 to-purple-500",
+      title: useTranslation('features.progress.title'),
+      description: useTranslation('features.progress.description')
+    },
+    {
+      icon: "🎧",
+      iconBg: "from-red-400 to-red-500",
+      title: useTranslation('features.audio.title'),
+      description: useTranslation('features.audio.description')
+    },
+    {
+      icon: "🌐",
+      iconBg: "from-teal-400 to-teal-500",
+      title: useTranslation('features.multilang.title'),
+      description: useTranslation('features.multilang.description')
+    }
+  ];
+  
+  // Quotes from the Gita for an inspirational section
+  const quotes = [
+    {
+      text: "You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions.",
+      chapter: "2",
+      verse: "47"
+    },
+    {
+      text: "Whatever happened, happened for the good. Whatever is happening, is happening for the good. Whatever will happen, will also happen for the good.",
+      chapter: "4",
+      verse: "11"
+    }
+  ];
+  
+  // CTA Section Translations
   const ctaTitle = useTranslation('cta.title');
   const ctaDesc = useTranslation('cta.description');
   const ctaButton = useTranslation('cta.button');
+
   return (
     <>
       <HeaderPublic />
-      <main className="min-h-screen bg-[#e5e5e5]">
-        <section className="container mx-auto px-4 py-20 flex flex-col lg:flex-row items-center gap-12">
-          <div className="lg:w-1/2">
-            <h1 className="text-5xl font-bold text-[#14213d] mb-6 leading-tight">{title}</h1>
-            <h2 className="text-4xl text-[#fca311] font-extrabold mb-6">{subtitle}</h2>
-            <p className="text-lg text-[#14213d] mb-6 max-w-xl leading-relaxed">
-              {description}
-            </p>
+      <main className="min-h-screen bg-gradient-to-b from-[#f8f8f8] to-[#e5e5e5]">
+        {/* Hero Section - Enhanced with better visual hierarchy */}
+        <section className="relative min-h-[90vh] flex items-center overflow-hidden border-b border-[#fca311]/20">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#fca311]/10 to-transparent z-0"></div>
+          <div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-[#14213d]/5 blur-3xl"></div>
+          <div className="absolute bottom-10 left-10 w-80 h-80 rounded-full bg-[#fca311]/5 blur-3xl"></div>
+          
+          <div className="container mx-auto px-4 py-12 flex flex-col lg:flex-row items-center gap-12 relative z-10">
+            <div className="lg:w-1/2">
+              <div className="relative mb-2">
+                <div className="absolute -top-2 -left-2 w-12 h-12 rounded-full bg-[#fca311]/30 blur-md"></div>
+                <span className="inline-block px-4 py-1 bg-[#fca311]/10 text-[#fca311] rounded-full text-sm font-semibold mb-6">🕉️ BHAGAVAD GITA</span>
+              </div>
+              
+              <h1 className="text-5xl md:text-6xl font-bold text-[#14213d] mb-6 leading-tight">{title}</h1>
+              <h2 className="text-3xl md:text-4xl text-[#fca311] font-extrabold mb-6 drop-shadow-sm">{subtitle}</h2>
+              <p className="text-lg md:text-xl text-[#14213d]/80 mb-8 max-w-xl leading-relaxed">
+                {description}
+              </p>
 
-            <div className="flex items-center gap-4">
-              <Link href="/read" className="bg-[#fca311] hover:bg-[#e5a00f] text-[#14213d] px-6 py-3 rounded-lg font-semibold shadow-md">
-                🕉️ {startReading}
-              </Link>
-              <a href="#about" className="text-[#14213d] underline">{learnMore}</a>
+              <div className="flex flex-wrap items-center gap-6">
+                <Link href="/read" className="bg-[#fca311] hover:bg-[#e5a00f] text-[#14213d] px-7 py-4 rounded-lg font-semibold shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105">
+                  <span className="flex items-center">
+                    <span className="mr-2">🕉️</span> 
+                    {startReading}
+                  </span>
+                </Link>
+                <a href="#about" className="text-[#14213d] hover:text-[#fca311] transition-colors duration-200 font-medium flex items-center group">
+                  {learnMore}
+                  <svg className="w-4 h-4 ml-1 group-hover:translate-y-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div className="lg:w-1/2 mt-12 lg:mt-0">
+              <div className="relative w-full h-[450px] rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-[#ffffff] to-[#f0f0f0] flex items-center justify-center border border-[#fca311]/20 transform hover:scale-[1.02] transition-transform duration-300 group">
+                <div className="absolute inset-0 bg-[#fca311]/5 group-hover:bg-[#fca311]/10 transition-colors duration-300"></div>
+                <div className="absolute inset-0 bg-[url('/gita-01-440x264.jpg.jpeg')] opacity-5 bg-cover bg-center mix-blend-overlay"></div>
+                <img
+                  src="/aj.png"
+                  alt="Arjuna and Krishna"
+                  className="object-contain w-full h-full relative z-10 drop-shadow-xl"
+                />
+                <div className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full bg-[#fca311]/20 group-hover:bg-[#fca311]/30 transition-colors duration-300 z-0"></div>
+                <div className="absolute -top-10 -left-10 w-32 h-32 rounded-full bg-[#14213d]/10 group-hover:bg-[#14213d]/20 transition-colors duration-300 z-0"></div>
+              </div>
             </div>
           </div>
-
-            <div className="lg:w-1/2">
-            <div className="relative w-full h-80 rounded-xl overflow-hidden shadow-xl bg-gradient-to-br from-[#ffffff] to-[#e5e5e5] flex items-center justify-center border border-[#fca311]">
-              <img
-              src="/aj.png"
-              alt="Arjuna and Krishna"
-              className="object-contain w-full h-full"
-              />
-            </div>
-            </div>
+          
+          <div className="absolute bottom-8 left-0 right-0 flex justify-center animate-bounce">
+            <a href="#about" aria-label="Scroll to About Section" className="w-12 h-12 flex items-center justify-center rounded-full bg-white/80 shadow-lg">
+              <svg className="w-6 h-6 text-[#14213d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
         </section>
 
-        <section id="about" className="w-full py-16">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-[#14213d] mb-4">{featuresTitle}</h2>
-              <p className="text-lg text-[#fca311] max-w-2xl mx-auto">
+        {/* Features Section - Enhanced with dynamic colors */}
+        <section id="about" className="w-full py-24 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#e5e5e5]/50 to-transparent"></div>
+          <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-[#fca311]/5 blur-3xl"></div>
+          <div className="absolute top-40 left-20 w-60 h-60 rounded-full bg-[#14213d]/5 blur-3xl"></div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center mb-16 relative">
+              <span className="inline-block px-4 py-1 bg-[#fca311]/10 text-[#fca311] rounded-full text-sm font-semibold mb-4">✨ DISCOVER</span><br />
+              <h2 className="text-4xl md:text-5xl font-bold text-[#14213d] mb-6 relative inline-block">
+                {featuresTitle}
+                <span className="absolute -bottom-2 left-1/4 right-1/4 h-1 bg-[#fca311] rounded-full"></span>
+              </h2>
+              <p className="text-lg md:text-xl text-[#14213d]/70 max-w-2xl mx-auto mt-4 leading-relaxed">
                 {featuresSubtitle}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Feature Card 1 */}
-              <div className="bg-[#ffffff] rounded-2xl shadow-xl p-8 border border-[#fca311]/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#fca311] to-[#e5a00f] rounded-full flex items-center justify-center mb-6 mx-auto">
-                  <span className="text-2xl">📖</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+              {featureCards.map((feature, index) => (
+                <div 
+                  key={index}
+                  className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                >
+                  <div className={`w-16 h-16 bg-gradient-to-br ${feature.iconBg} rounded-full flex items-center justify-center mb-6 mx-auto shadow-lg`}>
+                    <span className="text-2xl">{feature.icon}</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">{feature.title}</h3>
+                  <p className="text-[#14213d]/80 text-center leading-relaxed">
+                    {feature.description}
+                  </p>
                 </div>
-                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">{completeTextTitle}</h3>
-                <p className="text-[#14213d] text-center leading-relaxed">
-                  {completeTextDesc}
+              ))}
+            </div>
+
+            {/* New Quotes Section */}
+            <div className="my-24 relative">
+              <div className="absolute -left-12 top-1/2 transform -translate-y-1/2 text-[150px] text-[#fca311]/10 font-serif">❝</div>
+              <div className="absolute -right-12 top-1/2 transform -translate-y-1/2 text-[150px] text-[#fca311]/10 font-serif rotate-180">❝</div>
+              
+              <div className="text-center mb-12">
+                <span className="inline-block px-4 py-1 bg-[#14213d]/10 text-[#14213d] rounded-full text-sm font-semibold mb-4">🕉️ WISDOM</span>
+                <h2 className="text-3xl md:text-4xl font-bold text-[#14213d] mb-4">Timeless Wisdom from the Gita</h2>
+                <p className="text-lg text-[#14213d]/70 max-w-2xl mx-auto">
+                  Ancient knowledge to guide your modern life journey
                 </p>
               </div>
-
-              {/* Feature Card 2 */}
-              <div className="bg-[#ffffff] rounded-2xl shadow-xl p-8 border border-[#fca311]/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#fca311] to-[#e5a00f] rounded-full flex items-center justify-center mb-6 mx-auto">
-                  <span className="text-2xl">🔍</span>
-                </div>
-                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">{smartSearchTitle}</h3>
-                <p className="text-[#14213d] text-center leading-relaxed">
-                  {smartSearchDesc}
-                </p>
-              </div>
-
-              {/* Feature Card 3 */}
-              <div className="bg-[#ffffff] rounded-2xl shadow-xl p-8 border border-[#fca311]/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#fca311] to-[#e5a00f] rounded-full flex items-center justify-center mb-6 mx-auto">
-                  <span className="text-2xl">🔖</span>
-                </div>
-                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">{bookmarksTitle}</h3>
-                <p className="text-[#14213d] text-center leading-relaxed">
-                  {bookmarksDesc}
-                </p>
-              </div>
-
-              {/* Feature Card 4 */}
-              <div className="bg-[#ffffff] rounded-2xl shadow-xl p-8 border border-[#fca311]/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#fca311] to-[#e5a00f] rounded-full flex items-center justify-center mb-6 mx-auto">
-                  <span className="text-2xl">📊</span>
-                </div>
-                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">{progressTitle}</h3>
-                <p className="text-[#14213d] text-center leading-relaxed">
-                  {progressDesc}
-                </p>
-              </div>
-
-              {/* Feature Card 5 */}
-              <div className="bg-[#ffffff] rounded-2xl shadow-xl p-8 border border-[#fca311]/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#fca311] to-[#e5a00f] rounded-full flex items-center justify-center mb-6 mx-auto">
-                  <span className="text-2xl">🎧</span>
-                </div>
-                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">{audioTitle}</h3>
-                <p className="text-[#14213d] text-center leading-relaxed">
-                  {audioDesc}
-                </p>
-              </div>
-
-              {/* Feature Card 6 */}
-              <div className="bg-[#ffffff] rounded-2xl shadow-xl p-8 border border-[#fca311]/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#fca311] to-[#e5a00f] rounded-full flex items-center justify-center mb-6 mx-auto">
-                  <span className="text-2xl">🌐</span>
-                </div>
-                <h3 className="text-2xl font-bold text-[#14213d] mb-4 text-center">{multilangTitle}</h3>
-                <p className="text-[#14213d] text-center leading-relaxed">
-                  {multilangDesc}
-                </p>
+              
+              <div className="grid md:grid-cols-2 gap-8">
+                {quotes.map((quote, index) => (
+                  <div 
+                    key={index} 
+                    className="bg-gradient-to-br from-[#14213d] to-[#0a1628] p-8 rounded-2xl text-white relative overflow-hidden group"
+                  >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#fca311]/10 rounded-full blur-xl transform translate-x-1/2 -translate-y-1/2 group-hover:bg-[#fca311]/20 transition-colors duration-500"></div>
+                    <p className="text-xl font-serif italic leading-relaxed mb-6 relative z-10">"{quote.text}"</p>
+                    <div className="flex items-center justify-end">
+                      <span className="text-[#fca311] font-medium">Chapter {quote.chapter}, Verse {quote.verse}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Call to Action Section */}
-            <div className="mt-16 text-center">
-              <div className="bg-gradient-to-r from-[#14213d] to-[#002447] rounded-2xl p-12 text-white">
-                <h3 className="text-3xl font-bold mb-4">{ctaTitle}</h3>
-                <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-                  {ctaDesc}
-                </p>
-                <Link href="/read" className="inline-block bg-[#fca311] hover:bg-[#e5a00f] text-[#14213d] px-8 py-4 rounded-lg font-semibold text-lg shadow-lg transition-all duration-300 transform hover:scale-105">
-                  🕉️ {ctaButton}
-                </Link>
+            {/* Call to Action Section - Enhanced with better visual appeal */}
+            <div className="mt-20 text-center">
+              <div className="bg-gradient-to-r from-[#14213d] to-[#002447] rounded-3xl p-12 text-white relative overflow-hidden shadow-2xl border border-[#14213d]/50">
+                <div className="absolute top-0 left-0 w-full h-full">
+                  <div className="absolute top-10 right-10 w-40 h-40 rounded-full bg-[#fca311]/10 blur-xl"></div>
+                  <div className="absolute bottom-10 left-10 w-64 h-64 rounded-full bg-[#fca311]/10 blur-xl"></div>
+                  <div className="absolute -right-12 -bottom-12 w-32 h-32 bg-[#fca311]/30 rounded-full blur-md"></div>
+                </div>
+                
+                <div className="relative z-10">
+                  <span className="inline-block text-4xl mb-4">🕉️</span>
+                  <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white">{ctaTitle}</h3>
+                  <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto leading-relaxed">
+                    {ctaDesc}
+                  </p>
+                  <Link 
+                    href="/read" 
+                    className="inline-flex items-center bg-[#fca311] hover:bg-[#e5a00f] text-[#14213d] px-8 py-4 rounded-lg font-semibold text-lg shadow-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+                  >
+                    <span className="mr-2">🕉️</span> {ctaButton}
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </section>
+        
+        {/* Footer Section */}
+        <footer className="bg-gradient-to-r from-[#14213d]/95 to-[#0a1628] py-8 relative overflow-hidden border-t border-[#fca311]/20">
+          <div className="absolute inset-0">
+            <div className="absolute top-0 left-1/4 w-32 h-32 rounded-full bg-[#fca311]/5 blur-xl"></div>
+            <div className="absolute bottom-0 right-1/4 w-40 h-40 rounded-full bg-[#fca311]/5 blur-xl"></div>
+          </div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="flex flex-col items-center justify-center">
+              <div className="mb-6">
+                <span className="inline-block text-3xl text-[#fca311]/80 mb-2">🕉️</span>
+              </div>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 w-full max-w-2xl">
+                <div className="text-center">
+                  <h4 className="text-[#fca311] font-medium mb-3">Read</h4>
+                  <ul className="space-y-2">
+                    <li><a href="/read" className="text-white/70 hover:text-white text-sm transition-colors duration-200">All Chapters</a></li>
+                    <li><a href="/read" className="text-white/70 hover:text-white text-sm transition-colors duration-200">Popular Verses</a></li>
+                  </ul>
+                </div>
+                <div className="text-center">
+                  <h4 className="text-[#fca311] font-medium mb-3">Resources</h4>
+                  <ul className="space-y-2">
+                    <li><a href="#" className="text-white/70 hover:text-white text-sm transition-colors duration-200">Commentary</a></li>
+                    <li><a href="#" className="text-white/70 hover:text-white text-sm transition-colors duration-200">Audio</a></li>
+                  </ul>
+                </div>
+                <div className="text-center">
+                  <h4 className="text-[#fca311] font-medium mb-3">About</h4>
+                  <ul className="space-y-2">
+                    <li><a href="#" className="text-white/70 hover:text-white text-sm transition-colors duration-200">The Gita</a></li>
+                    <li><a href="#" className="text-white/70 hover:text-white text-sm transition-colors duration-200">Our Mission</a></li>
+                  </ul>
+                </div>
+                <div className="text-center">
+                  <h4 className="text-[#fca311] font-medium mb-3">Connect</h4>
+                  <ul className="space-y-2">
+                    <li><a href="#" className="text-white/70 hover:text-white text-sm transition-colors duration-200">Contribute</a></li>
+                    <li><a href="#" className="text-white/70 hover:text-white text-sm transition-colors duration-200">Contact</a></li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="w-full max-w-xs mx-auto border-t border-white/10 pt-6 flex flex-col items-center">
+                <p className="text-white/80 text-sm mb-2">© {new Date().getFullYear()} The Bhagavad Gita Project</p>
+                <p className="text-white/60 flex items-center justify-center text-sm">
+                  Made with <span className="mx-1 text-red-400 animate-pulse">❤️</span> by Nikhil Soni
+                </p>
+              </div>
+            </div>
+          </div>
+        </footer>
       </main>
     </>
   );
